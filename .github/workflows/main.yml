@@ -2,63 +2,43 @@ name: Busify CI/CD
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+    branches:
+      - main
 
 jobs:
-  frontend-check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - name: Install dependencies
-        run: npm install
-      - name: Type Check
-        run: npx tsc --noEmit
-
   python-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
-      - name: Run logic verification
-        run: python eta_calculator.py
+          python-version: "3.10"
+      - run: python eta_calculator.py
 
-  deploy:
-    needs: [frontend-check, python-check]
-    if: github.ref == 'refs/heads/main'
+  frontend-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      - name: Install & Build
-        run: |
-          npm install
-          npm run build
-        env:
-          # Injects your specific secret name into the build environment
-          API_KEY_BUSIFY: ${{ secrets.API_KEY_BUSIFY }}
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v3
+          node-version: 18
+      - run: npm ci
+      - run: npm run build
+
+  deploy:
+    needs: [python-check, frontend-check]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          path: './dist'
+          node-version: 18
+      - run: npm ci
+      - run: npm run build
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+
+
