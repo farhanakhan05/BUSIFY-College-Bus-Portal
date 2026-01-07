@@ -1,1 +1,18 @@
- 7c0df9e2d20a04510c75bba647963c1b5036ee9a
+# BUSIFY – College Bus Portal
+
+BUSIFY is a web-based college bus management portal that helps students
+view routes, schedules, and estimated arrival times.
+
+## Tech Stack
+- React + Vite
+- TypeScript
+- Node.js
+- Python (ETA logic)
+- GitHub Actions (CI/CD)
+
+## Features
+- Student portal
+- Bus ETA calculation
+- Automated CI checks
+- GitHub Pages deployment
+
