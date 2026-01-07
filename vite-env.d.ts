@@ -1,1 +1,15 @@
- 7c0df9e2d20a04510c75bba647963c1b5036ee9a
+/// <reference types="vite/client" />
+
+interface ImportMetaEnv {
+  readonly VITE_API_KEY_BUSIFY: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+
+declare const process: {
+  env: {
+    [key: string]: string | undefined
+  }
+}
