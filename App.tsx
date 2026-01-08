@@ -10,10 +10,12 @@ const App: React.FC = () => {
   const [role, setRole] = useState<UserRole>(UserRole.STUDENT);
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-inter">
+    <div className="w-full bg-slate-50 font-inter">
+
       <Navbar role={role} setRole={setRole} />
       
-      <main className="flex-1 overflow-hidden">
+      <main className="w-full">
+
         {role === UserRole.STUDENT ? <StudentPortal /> : <DriverPortal />}
       </main>
 
