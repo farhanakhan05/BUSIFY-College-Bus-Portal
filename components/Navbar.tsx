@@ -8,12 +8,22 @@ interface NavbarProps {
 }
 
 export const BusifyLogo = ({ className = "w-12 h-12" }: { className?: string }) => (
-  <div className={`relative ${className} flex items-center justify-center`}>
+  <div
+  className={`relative ${className} flex items-center justify-center`}
+  style={{ width: '56px', height: '56px' }}
+>
+
     {/* Pale Yellow Circle Background */}
     <div className="absolute inset-0 bg-[#F9E79F] rounded-full shadow-sm"></div>
     
     {/* SVG Reconstruction of the Logo */}
-    <svg viewBox="0 0 100 100" className="relative w-[85%] h-[85%]" xmlns="http://www.w3.org/2000/svg">
+    <svg
+  viewBox="0 0 100 100"
+  className="relative w-full h-full"
+  xmlns="http://www.w3.org/2000/svg"
+  preserveAspectRatio="xMidYMid meet"
+>
+
       {/* Graduation Cap on the B area */}
       <path d="M15 35 L30 28 L45 35 L30 42 Z" fill="#1A1A1A" />
       <path d="M22 38 L22 43 Q30 46 38 43 L38 38" fill="#1A1A1A" />
@@ -21,19 +31,10 @@ export const BusifyLogo = ({ className = "w-12 h-12" }: { className?: string }) 
       <circle cx="45" cy="43" r="2" fill="#D4AC0D" />
       
       {/* Text "BUSIFY" - Simplified high-impact paths */}
-      <text x="12" y="65" fontFamily="Arial Black, sans-serif" fontSize="24" fill="#1A1A1A" fontWeight="900">B</text>
-      <text x="28" y="65" fontFamily="Arial Black, sans-serif" fontSize="20" fill="#1A1A1A" fontWeight="900">US</text>
-      
-      {/* The Vertical Bus Icon */}
-      <rect x="52" y="40" width="10" height="30" rx="2" fill="#F4D03F" />
-      <rect x="54" y="42" width="6" height="4" fill="#34495E" opacity="0.6" />
-      <rect x="54" y="48" width="6" height="4" fill="#34495E" opacity="0.6" />
-      <rect x="54" y="54" width="6" height="4" fill="#34495E" opacity="0.6" />
-      <rect x="54" y="60" width="6" height="4" fill="#34495E" opacity="0.6" />
-      <circle cx="53" cy="68" r="1.5" fill="#1A1A1A" />
-      <circle cx="61" cy="68" r="1.5" fill="#1A1A1A" />
-      
-      <text x="65" y="65" fontFamily="Arial Black, sans-serif" fontSize="20" fill="#1A1A1A" fontWeight="900">FY</text>
+      <text x="12" y="62" fontSize="18" fill="#1A1A1A" fontWeight="900">B</text>
+      <text x="28" y="62" fontSize="16" fill="#1A1A1A" fontWeight="900">US</text>
+      <text x="65" y="62" fontSize="16" fill="#1A1A1A" fontWeight="900">FY</text>
+
     </svg>
   </div>
 );
